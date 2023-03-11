@@ -1,4 +1,4 @@
-# TimeEditor-Gorilla-Tag
+# TimeEditor | Gorilla Tag
 A simple menu to edit the time of day in Gorilla Tag. This only works in MODDED LOBBIES. ( ONLY FOR BETA ): May cause desync which could get you banned in public lobbies. Recommed to restart your game before entering publics.
 
 ## Installation
