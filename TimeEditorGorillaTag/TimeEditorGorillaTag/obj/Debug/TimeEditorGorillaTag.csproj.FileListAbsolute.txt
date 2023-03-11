@@ -1,0 +1,7 @@
+C:\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\BepInEx\plugins\TimeEditor\TimeEditorGorillaTag.dll
+C:\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\BepInEx\plugins\TimeEditor\TimeEditorGorillaTag.pdb
+C:\Users\jackc\source\repos\TimeEditorGorillaTag\TimeEditorGorillaTag\obj\Debug\TimeEditorGorillaTag.csproj.AssemblyReference.cache
+C:\Users\jackc\source\repos\TimeEditorGorillaTag\TimeEditorGorillaTag\obj\Debug\TimeEditorGorillaTag.csproj.CoreCompileInputs.cache
+C:\Users\jackc\source\repos\TimeEditorGorillaTag\TimeEditorGorillaTag\obj\Debug\TimeEditorGorillaTag.csproj.CopyComplete
+C:\Users\jackc\source\repos\TimeEditorGorillaTag\TimeEditorGorillaTag\obj\Debug\TimeEditorGorillaTag.dll
+C:\Users\jackc\source\repos\TimeEditorGorillaTag\TimeEditorGorillaTag\obj\Debug\TimeEditorGorillaTag.pdb
