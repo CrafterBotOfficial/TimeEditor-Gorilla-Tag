@@ -84,7 +84,6 @@ namespace TimeEditorGorillaTag
         {
             _modEnabled = false;
             CloseMenu();
-            TimeManager.Instance.Reset();
         }
         [ModdedGamemodeJoin]
         private void OnModdedGamemodeJoin() => _roomModded = true;
@@ -101,7 +100,7 @@ namespace TimeEditorGorillaTag
     {
         public const string ModGUILD = "crafterbot.timeeditor.gorillatag.menu";
         public const string ModName = "Time Editor";
-        public const string ModVersion = "0.0.2";
+        public const string ModVersion = "0.0.3";
 
         public const string UtillaGUILD = "org.legoandmars.gorillatag.utilla";
         public const string TMProGUILD = "com.ahauntedarmy.gorillatag.tmploader";
