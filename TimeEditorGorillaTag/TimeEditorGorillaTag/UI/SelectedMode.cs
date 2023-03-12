@@ -16,12 +16,12 @@ namespace TimeEditorGorillaTag.UI
 
         public int Mode;
 
-        private TextMeshPro ModeText;
+        //private TextMeshPro ModeText;
         private void Awake()
         {
             Instance = this;
             Mode = (ModeInfo.Modes.Count-1) / 2;
-            ModeText = UIConstructor.Instance.MenuTransform.GetChild(1).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            //ModeText = UIConstructor.Instance.MenuTransform.GetChild(1).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         }
 
         public void ChangeMode(int Amount)
@@ -34,7 +34,7 @@ namespace TimeEditorGorillaTag.UI
 
             try
             {
-                ModeText.text = ModeInfo.Modes.ElementAt(Mode).Key;
+                //ModeText.text = ModeInfo.Modes.ElementAt(Mode).Key;
 
                 string SpriteName = ModeInfo.Modes.ElementAt(Mode).Value;
                 var BackgroundImage = LoadSprite(SpriteName);
@@ -72,7 +72,6 @@ namespace TimeEditorGorillaTag.UI
         // Configuration entrys
 
         public static ConfigEntry<double> Morning;
-        public static ConfigEntry<double> Day;
         public static ConfigEntry<double> Evening;
         public static ConfigEntry<double> Night;
     }

@@ -1,4 +1,5 @@
-﻿using TimeEditorGorillaTag.UI;
+﻿using Mono.Cecil;
+using TimeEditorGorillaTag.UI;
 using UnityEngine;
 
 namespace TimeEditorGorillaTag
@@ -14,14 +15,19 @@ namespace TimeEditorGorillaTag
         }
 
         private double[] Default;
-        private double[] Morning = { ModeInfo.Morning.Value };
-        private double[] Day = { ModeInfo.Day.Value }; // I know this isn't the best way to do this, but I am not reading through all of the BetterDayNightManager code:(
-        private double[] Evening = { ModeInfo.Evening.Value };
-        private double[] Night = { ModeInfo.Night.Value };
+        private double[] Morning;
+        private double[] Day; // I know this isn't the best way to do this, but I am not reading through all of the BetterDayNightManager code:(
+        private double[] Evening;
+        private double[] Night;
 
         public void SetTime()
         {
             if (!Main.Instance.ModAllowed) return;
+
+            Morning = new double[] { ModeInfo.Morning.Value };
+            Day = new double[] { 0.65, 0.3, 0.89999999, 1, 1, 0.89999999, 0.3, 0.649999, 0.3, 1.5, };
+            Evening = new double[] { ModeInfo.Evening.Value };
+            Night = new double[] { ModeInfo.Night.Value };
 
             int Mode = SelectedMode.Instance.Mode;
             switch (Mode)
@@ -39,7 +45,7 @@ namespace TimeEditorGorillaTag
                 case 3:
                     BetterDayNightManager.instance.timeOfDayRange = Evening;
                     break;
-                    case 4:
+                case 4:
                    BetterDayNightManager.instance.timeOfDayRange = Night;
                     break;
             }

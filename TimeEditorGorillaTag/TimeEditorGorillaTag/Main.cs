@@ -33,7 +33,6 @@ namespace TimeEditorGorillaTag
             // BepInEx config
 
             ModeInfo.Morning = Config.Bind<double>("Time Presets", "Morning time set", 5);
-            ModeInfo.Day = Config.Bind<double>("Time Presets", "Day time set", 10.65);
             ModeInfo.Evening = Config.Bind<double>("Time Presets", "Evening time set", 25);
             ModeInfo.Night = Config.Bind<double>("Time Presets", "Night time set", 360);
 
@@ -102,7 +101,7 @@ namespace TimeEditorGorillaTag
     {
         public const string ModGUILD = "crafterbot.timeeditor.gorillatag.menu";
         public const string ModName = "Time Editor";
-        public const string ModVersion = "0.0.1";
+        public const string ModVersion = "0.0.2";
 
         public const string UtillaGUILD = "org.legoandmars.gorillatag.utilla";
         public const string TMProGUILD = "com.ahauntedarmy.gorillatag.tmploader";

@@ -16,7 +16,7 @@ namespace TimeEditorGorillaTag.UI.Behaviours
             if (other.gameObject.name != "FingerTrigger") return;
             if (_time > Time.realtimeSinceStartup) return;
 
-            _time = Time.realtimeSinceStartup + 1f;
+            _time = Time.realtimeSinceStartup + 0.6f;
 
             TimeManager.Instance.SetTime();
         }
