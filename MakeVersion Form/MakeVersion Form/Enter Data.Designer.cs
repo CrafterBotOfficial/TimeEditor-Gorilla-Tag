@@ -32,7 +32,7 @@ namespace MakeVersion_Form
         private void Build(object sender, EventArgs e)
         {
             BuildInfo BuildInfo_Instance = new BuildInfo();
-            BuildInfo_Instance.BuildType = releasebuild.Checked ? "Debug" : "Release";
+            BuildInfo_Instance.BuildType = releasebuild.Checked ?  "Release" : "Debug";
             BuildInfo_Instance.BuildId = int.Parse(buildid.Text);
             BuildInfo_Instance.Description = desc.Text;
             BuildInfo_Instance.Version = version.Text;
