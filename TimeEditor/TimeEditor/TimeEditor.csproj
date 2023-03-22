@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\BepInEx\plugins\TimeEditor\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,8 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="Managers\BuildValid.cs" />
+    <Compile Include="Managers\TimeManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Assembly-CSharp.dll</HintPath>
@@ -50,13 +56,13 @@
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BakeryRuntimeAssembly.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Harmony">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx.Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\BepInEx.Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Preloader">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx.Preloader.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\BepInEx.Preloader.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Cinemachine.dll</HintPath>
@@ -64,41 +70,32 @@
     <Reference Include="clipper_library">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\clipper_library.dll</HintPath>
     </Reference>
-    <Reference Include="ComputerInterface">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\ComputerInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="ComputerInterface.Commands">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\ComputerInterface.Commands.dll</HintPath>
-    </Reference>
-    <Reference Include="ComputerInterface.RoomBrowser">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\ComputerInterface.RoomBrowser.dll</HintPath>
-    </Reference>
-    <Reference Include="HarmonyXInterop">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\HarmonyXInterop.dll</HintPath>
-    </Reference>
     <Reference Include="MeshBakerCore">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\MeshBakerCore.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.Mdb.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.Pdb.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.Rocks.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\MonoMod.RuntimeDetour.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.Utils">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\MonoMod.Utils.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\MonoMod.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Oculus.Platform">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Oculus.Platform.dll</HintPath>
@@ -149,13 +146,10 @@
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\SteamVR.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="TechniePhysicsCreator">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TechniePhysicsCreator.dll</HintPath>
     </Reference>
@@ -375,18 +369,9 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="Utilla">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Utilla.dll</HintPath>
-    </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="Managers\BuildValid.cs" />
-    <Compile Include="Managers\TimeManager.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

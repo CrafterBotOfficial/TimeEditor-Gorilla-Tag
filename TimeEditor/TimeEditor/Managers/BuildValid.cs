@@ -15,7 +15,7 @@ namespace TimeEditor.Managers
         public BuildValid()
         {
             Client = new HttpClient();
-            Url = "";
+            Url = "https://raw.githubusercontent.com/CrafterBotOfficial/TimeEditor-Gorilla-Tag/main/modinfo.xml";
         }
 
         private void Awake()
@@ -28,10 +28,10 @@ namespace TimeEditor.Managers
 
             if (!VersionMissMatch(ModInfo.BuildId, BuildInfo_Instance.BuildId)) return;
             string BuildType = BuildInfo_Instance.BuildType;
-            if (BuildType == "Debug") return;
+            //if (BuildType == "Debug") return;
 
-            bool Valid = BuildInfo_Instance.BuildId > ModInfo.BuildId; // If internet version is greater then modinfo local build
-            VersionValid = Valid;
+            bool Invalid = BuildInfo_Instance.BuildId > ModInfo.BuildId; // If internet version is greater then modinfo local build
+            VersionValid = !Invalid;
         }
 
         private bool VersionMissMatch(int LoadedBuild, int OnlineBuild)
