@@ -7,8 +7,19 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "MakeVersion Form/1.0.0": {
+        "dependencies": {
+          "TimeEditor": "1.0.0.0"
+        },
         "runtime": {
           "MakeVersion Form.dll": {}
+        }
+      },
+      "TimeEditor/1.0.0.0": {
+        "runtime": {
+          "TimeEditor.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -16,6 +27,11 @@
   "libraries": {
     "MakeVersion Form/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TimeEditor/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

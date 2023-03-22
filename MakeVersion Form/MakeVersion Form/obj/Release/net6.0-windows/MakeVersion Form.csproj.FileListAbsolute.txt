@@ -15,3 +15,5 @@ C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\MakeVersion Form\MakeVers
 C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\MakeVersion Form\MakeVersion Form\obj\Release\net6.0-windows\MakeVersion Form.pdb
 C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\MakeVersion Form\MakeVersion Form\obj\Release\net6.0-windows\MakeVersion Form.genruntimeconfig.cache
 C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\MakeVersion Form\MakeVersion Form\obj\Release\net6.0-windows\ref\MakeVersion Form.dll
+C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\MakeVersion Form\MakeVersion Form\bin\Release\net6.0-windows\TimeEditor.dll
+C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\MakeVersion Form\MakeVersion Form\obj\Release\net6.0-windows\MakeVersion Form.csproj.CopyComplete

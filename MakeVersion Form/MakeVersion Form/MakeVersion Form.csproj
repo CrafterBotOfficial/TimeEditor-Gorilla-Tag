@@ -9,4 +9,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="TimeEditor">
+      <HintPath>References\TimeEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

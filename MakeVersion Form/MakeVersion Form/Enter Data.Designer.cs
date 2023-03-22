@@ -3,15 +3,6 @@ using System.Xml.Serialization;
 
 namespace MakeVersion_Form
 {
-    [Serializable]
-    public class BuildInfo // I was going to reference this to the main project, but it wasn't built when I got to this.
-    {
-        public string Description;
-
-        public string Version;
-        public int BuildId;
-        public string BuildType;
-    }
     partial class Enter_Data
     { 
         private System.ComponentModel.IContainer components = null;
@@ -31,7 +22,7 @@ namespace MakeVersion_Form
 
         private void Build(object sender, EventArgs e)
         {
-            BuildInfo BuildInfo_Instance = new BuildInfo();
+            TimeEditor.Managers.BuildInfo BuildInfo_Instance = new TimeEditor.Managers.BuildInfo();
             BuildInfo_Instance.BuildType = releasebuild.Checked ?  "Release" : "Debug";
             BuildInfo_Instance.BuildId = int.Parse(buildid.Text);
             BuildInfo_Instance.Description = desc.Text;
@@ -39,7 +30,7 @@ namespace MakeVersion_Form
 
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/" + "modinfo.xml";
             Stream stream = File.Create(path);
-            XmlSerializer Xml = new XmlSerializer(typeof(BuildInfo));
+            XmlSerializer Xml = new XmlSerializer(typeof(TimeEditor.Managers.BuildInfo));
             Xml.Serialize(stream, BuildInfo_Instance);
         }
         private void Compile_Click(object sender, EventArgs e) => prograss.Value = 100;

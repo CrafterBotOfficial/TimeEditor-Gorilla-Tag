@@ -27,13 +27,7 @@ namespace TimeEditor
         public const string ModName = "Time Editor";
         public const string ModVersion = "0.0.4";
 
-        public const int BuildId = 2;
-        public const string BuildType = BuildTypes.Debug == BuildTypes.Debug ? "Debug" : "Release";
-    }
-
-    public enum BuildTypes
-    {
-        Release,
-        Debug
+        public const int BuildId = 0;
+        public const string BuildType = "Debug";
     }
 }
