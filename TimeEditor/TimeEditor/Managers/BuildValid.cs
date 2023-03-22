@@ -26,9 +26,9 @@ namespace TimeEditor.Managers
             XmlSerializer Xml = new XmlSerializer(typeof(BuildInfo));
             BuildInfo_Instance = (BuildInfo)Xml.Deserialize(Data);
 
-            if (!VersionMissMatch(ModInfo.BuildId, BuildInfo_Instance.BuildId)) Destroy(this);
+            if (!VersionMissMatch(ModInfo.BuildId, BuildInfo_Instance.BuildId)) return;
             string BuildType = BuildInfo_Instance.BuildType;
-            if (BuildType == "Debug") Destroy(this);
+            if (BuildType == "Debug") return;
 
             bool Valid = BuildInfo_Instance.BuildId > ModInfo.BuildId; // If internet version is greater then modinfo local build
             VersionValid = Valid;
