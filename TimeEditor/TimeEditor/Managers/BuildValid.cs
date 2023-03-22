@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -26,21 +27,20 @@ namespace TimeEditor.Managers
             XmlSerializer Xml = new XmlSerializer(typeof(BuildInfo));
             BuildInfo_Instance = (BuildInfo)Xml.Deserialize(Data);
 
-            if (!VersionMissMatch(ModInfo.BuildId, BuildInfo_Instance.BuildId)) return;
-            string BuildType = BuildInfo_Instance.BuildType;
+            //string BuildType = BuildInfo_Instance.BuildType;
             //if (BuildType == "Debug") return;
 
             bool Invalid = BuildInfo_Instance.BuildId > ModInfo.BuildId; // If internet version is greater then modinfo local build
             VersionValid = !Invalid;
-        }
 
-        private bool VersionMissMatch(int LoadedBuild, int OnlineBuild)
-        {
-            bool Valid = LoadedBuild == OnlineBuild;
-            return Valid;
+            if (Invalid)
+            {
+                Debug.LogWarning("Your version of Time Editor is outdated. Please update to the latest version.");
+            }
         }
     }
 
+    [Serializable]
     public class BuildInfo
     {
         public string Description;
