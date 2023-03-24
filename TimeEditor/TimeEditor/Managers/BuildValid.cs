@@ -2,12 +2,15 @@
 using System.Net.Http;
 using System.Xml.Serialization;
 using UnityEngine;
+using Valve.VR;
 
 namespace TimeEditor.Managers
 {
     internal class BuildValid : MonoBehaviour
     {
         public static bool VersionValid;
+        public static string Version;
+        public static string VersionDescription;
 
         private HttpClient Client;
         private string Url;
@@ -21,6 +24,7 @@ namespace TimeEditor.Managers
 
         private void Awake()
         {
+            return;
             var RawData = Client.GetStreamAsync(Url);
             var Data = RawData.Result;
 
@@ -35,6 +39,9 @@ namespace TimeEditor.Managers
 
             if (Invalid)
             {
+                Version = BuildInfo_Instance.Version;
+                VersionDescription = BuildInfo_Instance.Description;
+
                 Debug.LogWarning("Your version of Time Editor is outdated. Please update to the latest version.");
             }
         }

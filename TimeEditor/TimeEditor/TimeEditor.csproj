@@ -35,6 +35,9 @@
     <Compile Include="Managers\BuildValid.cs" />
     <Compile Include="Managers\TimeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Entry.cs" />
+    <Compile Include="UI\Universal.cs" />
+    <Compile Include="UI\Views\MainView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -64,11 +67,17 @@
     <Reference Include="BepInEx.Preloader">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx\BepInEx.Preloader.dll</HintPath>
     </Reference>
+    <Reference Include="Bepinject">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Bepinject.dll</HintPath>
+    </Reference>
     <Reference Include="Cinemachine">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="clipper_library">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\clipper_library.dll</HintPath>
+    </Reference>
+    <Reference Include="ComputerInterface">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\ComputerInterface.dll</HintPath>
     </Reference>
     <Reference Include="MeshBakerCore">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\MeshBakerCore.dll</HintPath>
@@ -369,9 +378,19 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="Utilla">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Utilla.dll</HintPath>
+    </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
       <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Zenject">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Zenject.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenject-usage">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Zenject-usage.dll</HintPath>
+    </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
