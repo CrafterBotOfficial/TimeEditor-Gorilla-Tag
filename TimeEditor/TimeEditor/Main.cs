@@ -3,12 +3,15 @@ using Bepinject;
 using HarmonyLib;
 using System.Reflection;
 using UnityEngine;
+using Utilla;
 
 namespace TimeEditor
 {
     [BepInPlugin(ModInfo.ModGUILD, ModInfo.ModName, ModInfo.ModVersion)]
     [BepInDependency("tonimacaroni.computerinterface")]
     [BepInDependency("dev.auros.bepinex.bepinject")]
+
+    [ModdedGamemode]
     public class Main : BaseUnityPlugin
     {
         private void Awake()
@@ -26,6 +29,18 @@ namespace TimeEditor
                 .AddComponent<Managers.BuildValid>()
             .gameObject
                 .AddComponent<Managers.TimeManager>();
+        }
+
+        /// <summary>
+        /// Modded Gamemode
+        /// </summary>
+        [ModdedGamemodeJoin]
+        private void Joined() => Managers.TimeManager.Instance.RoomValid = true;
+        [ModdedGamemodeLeave]
+        private void Left()
+        {
+            Managers.TimeManager.Instance.RoomValid = false;
+            Managers.TimeManager.Instance.Enabled = false;
         }
     }
 

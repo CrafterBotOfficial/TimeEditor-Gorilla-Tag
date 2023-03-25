@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Xml.Serialization;
 using UnityEngine;
-using Valve.VR;
 
 namespace TimeEditor.Managers
 {
@@ -24,7 +23,6 @@ namespace TimeEditor.Managers
 
         private void Awake()
         {
-            return;
             var RawData = Client.GetStreamAsync(Url);
             var Data = RawData.Result;
 

@@ -9,10 +9,12 @@ namespace TimeEditor.UI
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder
+                .BeginCenter()
                 .MakeBar('=', SCREEN_WIDTH / 2, 0)
+                .AppendLine()
                 .AppendLine(Title)
-                .AppendLines(1)
                 .AppendClr(Author, "#545454")
+                .AppendLine()
                 .MakeBar('=', SCREEN_WIDTH / 2, 0)
                 .AppendLines(Offset);
 

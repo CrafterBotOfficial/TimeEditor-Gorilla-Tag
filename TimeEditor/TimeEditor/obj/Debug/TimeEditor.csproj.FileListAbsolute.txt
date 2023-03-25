@@ -121,3 +121,8 @@ C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\TimeEditor\TimeEditor\obj
 C:\Users\jackc\Documents\GitHub\TimeEditor-Gorilla-Tag\TimeEditor\TimeEditor\obj\Debug\TimeEditor.pdb
 C:\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\BepInEx\plugins\TimeEditor\TimeEditor.dll
 C:\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\BepInEx\plugins\TimeEditor\TimeEditor.pdb
+C:\Users\jackc\OneDrive\Documents\GitHub\TimeEditor-Gorilla-Tag\TimeEditor\TimeEditor\obj\Debug\TimeEditor.csproj.AssemblyReference.cache
+C:\Users\jackc\OneDrive\Documents\GitHub\TimeEditor-Gorilla-Tag\TimeEditor\TimeEditor\obj\Debug\TimeEditor.csproj.CoreCompileInputs.cache
+C:\Users\jackc\OneDrive\Documents\GitHub\TimeEditor-Gorilla-Tag\TimeEditor\TimeEditor\obj\Debug\TimeEditor.dll
+C:\Users\jackc\OneDrive\Documents\GitHub\TimeEditor-Gorilla-Tag\TimeEditor\TimeEditor\obj\Debug\TimeEditor.pdb
+C:\Users\jackc\OneDrive\Documents\GitHub\TimeEditor-Gorilla-Tag\TimeEditor\TimeEditor\obj\Debug\TimeEditor.csproj.CopyComplete

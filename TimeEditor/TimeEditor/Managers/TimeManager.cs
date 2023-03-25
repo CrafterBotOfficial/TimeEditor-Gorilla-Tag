@@ -1,82 +1,105 @@
 ﻿using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
-using Utilla;
 
 namespace TimeEditor.Managers
 {
-    [ModdedGamemode]
     internal class TimeManager : MonoBehaviour
     {
         public static TimeManager Instance;
 
+        private Traverse traverse;
+
         public bool RoomValid;
         public bool Enabled;
-
-        public float Lerp;
 
         public TimeManager()
         {
             Instance = this;
-            /*Remove*/
-            Enabled = true;
+            traverse = Traverse.Create(BetterDayNightManager.instance);
         }
         public void Reset()
-        {
+        { 
+            // this.ChangeMaps(this.currentTimeIndex, (this.currentTimeIndex + 1) % this.dayNightLightmaps.Length);
+            BetterDayNightManager BT = BetterDayNightManager.instance;
+            
+            BT.overrideIndex = -1;
+            traverse.Field("lastIndex").SetValue(-1);
 
+            int TargetIndex = TimePatch.OldTimeOfDayIndex;
+
+            float TargetLerp = BT.currentLerp;
+
+            BetterDayNightManager.instance.currentTimeIndex = TargetIndex;
+            AccessExtensions.call(BetterDayNightManager.instance, "ChangeLerps", new object[] { TargetLerp });
+            //AccessExtensions.call(BetterDayNightManager.instance, "ChangeMaps", new object[] { NewTimeIndexSwitch });
         }
-        //
-        //
-        // Set room info
-        //
-        //
-        [ModdedGamemodeJoin]
-        private void Joined() => RoomValid = true;
-        [ModdedGamemodeLeave]
-        private void Left() => RoomValid = false;
     }
 
     [HarmonyPatch(typeof(BetterDayNightManager))]
     [HarmonyPatch("UpdateTimeOfDay", MethodType.Enumerator)]
     public class TimePatch
     {
-        public static string TimeOfDay;
+        //public static Traverse traverse;
+
+        public static string TimeOfDay = "Dawn";
+        public static int OldTimeOfDayIndex;
+
+        // override
+        public static int IndexOverride;
+        public static bool UseOverride;
 
         private static bool _Enabled;
         public static void Postfix()
-        { // 5 index
+        {
             if (!TimeManager.Instance.Enabled && _Enabled)
             {
                 _Enabled = false;
                 TimeManager.Instance.Reset();
             }
-            //if (!TimeManager.Instance.Enabled) return;
-            _Enabled = true;
+            else if (TimeManager.Instance.Enabled && !_Enabled)
+            {
+                _Enabled = true;
+                OldTimeOfDayIndex = BetterDayNightManager.instance.currentTimeIndex;
+            }
 
-            int TimeIndex = TimePresets[TimeOfDay];
-            AccessExtensions.call(BetterDayNightManager.instance, "ChangeLerps", new object[] { 3600 % (TimeIndex == 0 ? 1 : TimeIndex) });
-            AccessExtensions.call(BetterDayNightManager.instance, "ChangeMaps", new object[] { (TimeIndex - 1), TimeIndex });
+            if (!TimeManager.Instance.Enabled || !TimeManager.Instance.RoomValid || TimePresets[TimeOfDay] == null) return;
+
+            if (UseOverride)
+            {
+                AccessExtensions.call(BetterDayNightManager.instance, "ChangeLerps", new object[] { 3600 % (IndexOverride <= 0 ? 1 : IndexOverride) });
+                BetterDayNightManager.instance.overrideIndex = IndexOverride;
+            }
+            else
+            {
+                int TimeIndex = TimePresets[TimeOfDay];
+                AccessExtensions.call(BetterDayNightManager.instance, "ChangeLerps", new object[] { 3600 % (TimeIndex == 0 ? 1 : TimeIndex) });
+                BetterDayNightManager.instance.overrideIndex = TimeIndex;
+            }
         }
 
         public static Dictionary<string, int> TimePresets = new Dictionary<string, int>()
         {
-            { "Dawn", 3 }, // 3
-            { "Day", 4 }, // 4
+            { "Dawn", 6 },
+            { "Day", 4 },
             { "Dusk", 2 },
-            { "Night", 1 },
-            { "Midnight", 0 },
+            { "Night", 0 },
         };
     }
     public static class AccessExtensions // https://stackoverflow.com/questions/135443/how-do-i-use-reflection-to-invoke-a-private-method
     {
         public static object call(this object o, string methodName, params object[] args)
         {
-            var mi = o.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            if (mi != null)
+            try
             {
-                return mi.Invoke(o, args);
+                var mi = o.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (mi != null)
+                {
+                    return mi.Invoke(o, args);
+                }
+                return null;
             }
-            return null;
+            catch { return null; }
         }
     }
 }
