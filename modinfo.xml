@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <BuildInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Description>Testing version checker</Description>
-  <Version>0.0.4</Version>
-  <BuildId>1</BuildId>
-  <BuildType>Debug</BuildType>
+  <Description>This is the first release of Time Editor.</Description>
+  <Version>1.0.0</Version>
+  <BuildId>2</BuildId>
+  <BuildType>Release</BuildType>
 </BuildInfo>
