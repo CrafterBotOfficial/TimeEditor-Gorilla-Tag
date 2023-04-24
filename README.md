@@ -1,4 +1,5 @@
-# Time Editor
+# Time Editor - OUTDATDED
+- Currently awaiting a rewrite.
 A simple mod for Gorilla Tag that allows you to change the time of day.
 
 ## Installation
