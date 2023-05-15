@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/github/v/release/CrafterBotOfficial/TimeEditor-Gorilla-Tag?label=Version">
 </div>
 
-### Installasion
+### Installation
 To install this plugin use the [MonkeModManager](https://github.com/DeadlyKitten/MonkeModManager/releases/tag/1.3.0) to prepare your game. Then ensure you have [MonkeStatistics](https://github.com/CrafterBotOfficial/MonkeStatistics/releases/tag/1.0.3) installed. Finally copy and paste the executable``(.DLL)`` file into the 
 ``GorillaTag->BepInEx->plugins``. 
 ### Usage
