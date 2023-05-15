@@ -16,11 +16,10 @@ namespace TimeEditor
             GUID = "crafterbot.gorillatag.timeeditor",
             NAME = "Time Editor",
             VERSION = "1.0.1",
-            GITHUB_REPO_VERSION = ""; // add later
+            GITHUB_REPO_VERSION = "https://raw.githubusercontent.com/CrafterBotOfficial/TimeEditor-Gorilla-Tag/main/Version";
         internal static bool RoomValid;
         internal static bool VersionValid = true;
         internal static ManualLogSource manualLogSource;
-
         private void Awake()
         {
             manualLogSource = Logger;
@@ -66,6 +65,7 @@ namespace TimeEditor
                 SetTime((int)TimeOfDay.Night);
             if (GUILayout.Button("Reset"))
                 TimeController.ResetTime();
+            GUILayout.Label("Version : " + VersionValid);
 
             void SetTime(int Time)
             {
