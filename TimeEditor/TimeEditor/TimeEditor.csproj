@@ -1,421 +1,291 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7B5B7EDC-64AE-4E89-9B83-B77B8B866C47}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TimeEditor</RootNamespace>
-    <AssemblyName>TimeEditor</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+	  <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\BepInEx\plugins\TimeEditor\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="Managers\BuildValid.cs" />
-    <Compile Include="Managers\TimeManager.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Entry.cs" />
-    <Compile Include="UI\Universal.cs" />
-    <Compile Include="UI\Views\Credits.cs" />
-    <Compile Include="UI\Views\MainView.cs" />
-    <Compile Include="UI\Views\SetTime.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\0Harmony.dll</HintPath>
+      <HintPath>$(BepInExAssemblyPath)\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="AstarPathfindingProject">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\AstarPathfindingProject.dll</HintPath>
-    </Reference>
-    <Reference Include="Autodesk.Fbx">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Autodesk.Fbx.dll</HintPath>
-    </Reference>
-    <Reference Include="Backtrace.Unity">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Backtrace.Unity.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="BakeryRuntimeAssembly">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BakeryRuntimeAssembly.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\BakeryRuntimeAssembly.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx.dll</HintPath>
+      <HintPath>$(BepInExAssemblyPath)\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Harmony">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx.Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx.Preloader">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\BepInEx.Preloader.dll</HintPath>
-    </Reference>
-    <Reference Include="Bepinject">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Bepinject.dll</HintPath>
+      <HintPath>$(BepInExAssemblyPath)\BepInEx.Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Cinemachine">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Cinemachine.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Cinemachine.dll</HintPath>
     </Reference>
     <Reference Include="clipper_library">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\clipper_library.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\clipper_library.dll</HintPath>
     </Reference>
-    <Reference Include="ComputerInterface">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\ComputerInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="ComputerInterface.Commands">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\ComputerInterface.Commands.dll</HintPath>
-    </Reference>
-    <Reference Include="ComputerInterface.RoomBrowser">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\ComputerInterface.RoomBrowser.dll</HintPath>
-    </Reference>
-    <Reference Include="HarmonyXInterop">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\HarmonyXInterop.dll</HintPath>
-    </Reference>
-    <Reference Include="MeshBakerCore">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\MeshBakerCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.Mdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Cecil.Rocks.dll</HintPath>
+    <Reference Include="MonkeStatistics">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\BepInEx\plugins\MonkeStatistics\MonkeStatistics.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Security">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\MonoMod.RuntimeDetour.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoMod.Utils">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\MonoMod.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Newtonsoft.Json.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Oculus.Platform">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Oculus.Platform.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Oculus.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Oculus.VR">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Oculus.VR.dll</HintPath>
-    </Reference>
-    <Reference Include="Pathfinding.ClipperLib">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Pathfinding.ClipperLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
-    </Reference>
-    <Reference Include="Pathfinding.Poly2Tri">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Pathfinding.Poly2Tri.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Oculus.VR.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Photon3Unity3D.dll</HintPath>
-    </Reference>
-    <Reference Include="PhotonChat">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PhotonChat.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="PhotonRealtime">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PhotonRealtime.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\PhotonRealtime.dll</HintPath>
     </Reference>
     <Reference Include="PhotonUnityNetworking">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PhotonUnityNetworking.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\PhotonUnityNetworking.dll</HintPath>
     </Reference>
     <Reference Include="PhotonUnityNetworking.Utilities">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PhotonUnityNetworking.Utilities.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\PhotonUnityNetworking.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="PhotonVoice">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PhotonVoice.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\PhotonVoice.dll</HintPath>
     </Reference>
     <Reference Include="PhotonVoice.API">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PhotonVoice.API.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\PhotonVoice.API.dll</HintPath>
     </Reference>
     <Reference Include="PhotonVoice.PUN">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PhotonVoice.PUN.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\PhotonVoice.PUN.dll</HintPath>
     </Reference>
     <Reference Include="PlayFab">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\PlayFab.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\PlayFab.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.OdinInspector.Attributes">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Sirenix.OdinInspector.Attributes.dll</HintPath>
+    <Reference Include="System.EnterpriseServices">
+      <HintPath>$(GameAssemblyPath)\System.EnterpriseServices.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization.Config">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Sirenix.Serialization.Config.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Utilities">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Sirenix.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="SteamVR">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\SteamVR.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Serialization" />
-    <Reference Include="TechniePhysicsCreator">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TechniePhysicsCreator.dll</HintPath>
+    <Reference Include="System.ServiceModel.Internals">
+      <HintPath>$(GameAssemblyPath)\System.ServiceModel.Internals.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Animation.Rigging">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.Animation.Rigging.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Unity.Animation.Rigging.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.Burst.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.Burst.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Formats.Fbx.Runtime">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.Formats.Fbx.Runtime.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InputSystem">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.InputSystem.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Unity.InputSystem.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Recorder">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.Recorder.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.Timeline.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Interaction.Toolkit">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Unity.XR.Interaction.Toolkit.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\Unity.XR.Interaction.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.AccessibilityModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.AccessibilityModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.AIModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.AIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.AndroidJNIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ARModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ARModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClothModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ClothModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ClothModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ClusterInputModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ClusterInputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.CrashReportingModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.CrashReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.DirectorModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.DirectorModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.DSPGraphModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.DSPGraphModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.GameCenterModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.GameCenterModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GridModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.GridModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.GridModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.HotReloadModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.HotReloadModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.InputModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.LocalizationModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.LocalizationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.PerformanceReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ProfilerModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ProfilerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.ScreenCaptureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.SharedInternalsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.SpriteMaskModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.SpriteShapeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.StreamingModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.StreamingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.SubstanceModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.SubstanceModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.SubsystemsModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.SubsystemsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.TerrainModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.TerrainModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.TerrainPhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.TextCoreModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.TextCoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.TilemapModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.TilemapModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TLSModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.TLSModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.TLSModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UIElementsModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UmbraModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UmbraModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UNETModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UNETModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UNETModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityAnalyticsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityConnectModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityTestProtocolModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityWebRequestModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.VehiclesModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.VehiclesModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VFXModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.VFXModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VideoModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.VideoModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VRModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.VRModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.VRModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.WindModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.WindModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\UnityEngine.XRModule.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Utilla">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Utilla.dll</HintPath>
-    </Reference>
-    <Reference Include="Valve.Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\Valve.Newtonsoft.Json.dll</HintPath>
+      <HintPath>$(PluginsPath)\Utilla\Utilla.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Zenject.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject-usage">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Oculus\Software\Software\another-axiom-gorilla-tag\References\TEMP\Zenject-usage.dll</HintPath>
+      <HintPath>$(GameAssemblyPath)\websocket-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

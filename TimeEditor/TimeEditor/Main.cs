@@ -1,56 +1,103 @@
 ﻿using BepInEx;
-using Bepinject;
+using BepInEx.Logging;
 using HarmonyLib;
-using System.Reflection;
+using System;
+using System.Net.Http;
 using UnityEngine;
 using Utilla;
 
 namespace TimeEditor
 {
-    [BepInPlugin(ModInfo.ModGUILD, ModInfo.ModName, ModInfo.ModVersion)]
-    [BepInDependency("tonimacaroni.computerinterface")]
-    [BepInDependency("dev.auros.bepinex.bepinject")]
-
+    [BepInPlugin(GUID, NAME, VERSION), BepInDependency("Crafterbot.MonkeStatistics"), BepInDependency("org.legoandmars.gorillatag.utilla")]
     [ModdedGamemode]
-    public class Main : BaseUnityPlugin
+    internal class Main : BaseUnityPlugin
     {
+        internal const string
+            GUID = "crafterbot.gorillatag.timeeditor",
+            NAME = "Time Editor",
+            VERSION = "1.0.1",
+            GITHUB_REPO_VERSION = ""; // add later
+        internal static bool RoomValid;
+        internal static bool VersionValid = true;
+        internal static ManualLogSource manualLogSource;
+
         private void Awake()
         {
-            SetManagers();
+            manualLogSource = Logger;
+            $"Init : {GUID}".Log();
 
-            Harmony harmony = new Harmony(ModInfo.ModGUILD);
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            "Comparing online version to local version!".Log();
+            try
+            {
+                using (HttpClient httpClient = new HttpClient())
+                    if (new Version(httpClient.GetStringAsync(GITHUB_REPO_VERSION).Result).Build > new Version(VERSION).Build)
+                        VersionValid = false;
+            }
+            catch (Exception ex) { $"Error while checking for updates: {ex.Message}".Log(LogLevel.Error); }
+            finally { "Compared online version to local".Log(LogLevel.Message); }
 
-            Zenjector.Install<UI.MainInstaller>().OnProject();
+            new Harmony(GUID).PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
+            MonkeStatistics.API.Registry.AddAssembly();
         }
-        private void SetManagers()
+
+        /* Debugging NONE-VR methods */
+
+#if DEBUG
+        private int time;
+        private void OnGUI()
         {
-            new GameObject("TimeEditor Managers")
-                .AddComponent<Managers.BuildValid>()
-            .gameObject
-                .AddComponent<Managers.TimeManager>();
-        }
+            //return; // I am done with this. I will leave it in incase Gtag changes it's DayNightManager AGAIN
+            time = int.Parse(GUILayout.TextField(time.ToString()));
+            RoomValid = true;
+            if (GUILayout.Button("Set"))
+            {
+                TimeController.CurrentTimeOverride = time;
+                TimeController.OverrideTime = true;
+                TimeController.UpdateCustomTime();
+            }
 
-        /// <summary>
-        /// Modded Gamemode
-        /// </summary>
+            if (GUILayout.Button("Morning"))
+                SetTime((int)TimeOfDay.Morning);
+            if (GUILayout.Button("Day"))
+                SetTime((int)TimeOfDay.Day);
+            if (GUILayout.Button("Evening"))
+                SetTime((int)TimeOfDay.Evening);
+            if (GUILayout.Button("Night"))
+                SetTime((int)TimeOfDay.Night);
+            if (GUILayout.Button("Reset"))
+                TimeController.ResetTime();
+
+            void SetTime(int Time)
+            {
+                TimeController.CurrentTimeOverride = Time;
+                TimeController.OverrideTime = true;
+                TimeController.UpdateCustomTime();
+            }
+
+            if (GUILayout.Button("Log Data"))
+            {
+                BetterDayNightManager manager = BetterDayNightManager.instance;
+                manager.currentTimeIndex.Log();
+                manager.overrideIndex.Log();
+                manager.timeMultiplier.Log();
+                manager.timeOfDayRange.Log();
+            }
+        }
+#endif
+
+        /* Room event handler methods */
+
         [ModdedGamemodeJoin]
-        private void Joined() => Managers.TimeManager.Instance.RoomValid = true;
-        [ModdedGamemodeLeave]
-        private void Left()
+        private void OnJoined(string gamemode)
         {
-            Managers.TimeManager.Instance.RoomValid = false;
-            Managers.TimeManager.Instance.Enabled = false;
+            RoomValid = true;
+            TimeController.UpdateCustomTime();
         }
-    }
-
-    internal class ModInfo
-    {
-        public const string ModGUILD = "crafterbot.gorillatag.timeeditor";
-        public const string ModName = "Time Editor";
-        public const string ModVersion = "0.0.4";
-
-        public const int BuildId = 1;
-        public const string BuildType = "Debug";
+        [ModdedGamemodeLeave]
+        private void OnLeft()
+        {
+            RoomValid = false;
+            TimeController.ResetTime();
+        }
     }
 }
