@@ -6,6 +6,7 @@
   <a href="https://github.com/CrafterBotOfficial/TimeEditor-Gorilla-Tag/blob/main/LICENSE">
     <img alt="GitHub" src="https://img.shields.io/github/license/CrafterBotOfficial/TimeEditor-Gorilla-Tag?style=flat-square">
   </a>
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/CrafterBotOfficial/TimeEditor-Gorilla-Tag/total?style=flat-square">
   <img src="https://img.shields.io/github/v/release/CrafterBotOfficial/TimeEditor-Gorilla-Tag?label=Version">
 
 </div>
