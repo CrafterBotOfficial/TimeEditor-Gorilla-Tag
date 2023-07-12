@@ -16,7 +16,7 @@ namespace TimeEditor.Interface.Views
         {
             base.OnShow(args);
 
-            _selectionHandler = new UISelectionHandler(EKeyboardKey.Up, EKeyboardKey.Down);
+            _selectionHandler = new UISelectionHandler(EKeyboardKey.Up, EKeyboardKey.Down, EKeyboardKey.Enter);
             _selectionHandler.ConfigureSelectionIndicator("<color=#ed6540>> </color>", "", "  ", "");
             _selectionHandler.MaxIdx = TimeManager.TimePresets.Count - 1;
             _selectionHandler.OnSelected += OnSelected;
@@ -24,7 +24,6 @@ namespace TimeEditor.Interface.Views
             _arrowSelectionHandler = new UISelectionHandler(EKeyboardKey.Left, EKeyboardKey.Right);
             _arrowSelectionHandler.ConfigureSelectionIndicator("< ", " >", "", "");
             _arrowSelectionHandler.MaxIdx = BetterDayNightManager.instance.timeOfDayRange.Length;
-            _arrowSelectionHandler.OnSelected += OnArrowSelected;
 
             DrawPage();
         }
@@ -32,11 +31,13 @@ namespace TimeEditor.Interface.Views
         private void DrawPage()
         {
             StringBuilder stringBuilder = new StringBuilder()
+                .BeginAlign("center")
                 .MakeBar('=', SCREEN_WIDTH, 0)
                 .Append("\nTime Editor\nBy Crafterbot\n")
                 .MakeBar('=', SCREEN_WIDTH, 0)
                 .AppendLines(1)
                 .AppendLine($"Current Index:{TimeManager.Current}")
+                .EndAlign()
                 ;
 
             var dictionary = TimeManager.TimePresets;
@@ -46,29 +47,42 @@ namespace TimeEditor.Interface.Views
                 stringBuilder.AppendLine(_selectionHandler.GetIndicatedText(i, name));
             }
 
+            stringBuilder.AppendLine(_selectionHandler.GetIndicatedText(dictionary.Count, "Reset"));
+
             SetText(stringBuilder);
         }
-
+       
         /* Handlers */
 
         public override void OnKeyPressed(EKeyboardKey key)
         {
-            if (_selectionHandler.HandleKeypress(key) || _arrowSelectionHandler.HandleKeypress(key))
+            bool arrowSelection = _arrowSelectionHandler.HandleKeypress(key);
+            if (_selectionHandler.HandleKeypress(key) || arrowSelection)
+            {
+                if (arrowSelection)
+                    TimeManager.SetTime(_arrowSelectionHandler.CurrentSelectionIndex);
+                DrawPage();
+                return;
+            }
+
+            if (_arrowSelectionHandler.HandleKeypress(key)) 
             {
                 DrawPage();
                 return;
             }
+
             ReturnToMainMenu();
         }
 
         private void OnSelected(int obj)
         {
-            TimeManager.SetTime(obj);
-        }
-
-        private void OnArrowSelected(int obj)
-        {
-            TimeManager.SetTime(obj);
+            if (obj == TimeManager.TimePresets.Count)
+            {
+                TimeManager.Reset();
+                return;
+            }
+            ETimePreset timePreset = (ETimePreset)Enum.GetValues(typeof(ETimePreset)).GetValue(obj);
+            TimeManager.SetTime(timePreset);
         }
 
         /* Models & Entry */
