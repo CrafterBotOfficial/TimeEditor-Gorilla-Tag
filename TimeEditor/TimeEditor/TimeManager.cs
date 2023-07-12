@@ -4,8 +4,8 @@
     {
         internal static int Current;
 
-        // private static int _currentIndex;
         private static bool _isTimeFrozen;
+        private static int _lastTimeIndex;
         private static int _lastWeatherIndex;
 
         /* Edit time controls */
@@ -29,10 +29,11 @@
             {
                 Main.Log("Saving current time data...");
                 _lastWeatherIndex = manager.currentWeatherIndex;
+                _lastTimeIndex = manager.currentTimeIndex;
             }
             _isTimeFrozen = true;
 
-           BetterDayNightManager.instance.SetOverrideIndex(Current);
+            BetterDayNightManager.instance.SetOverrideIndex(Current);
         }
 
         internal static void Reset()
@@ -41,25 +42,11 @@
             if (_isTimeFrozen)
             {
                 _isTimeFrozen = false;
-                BetterDayNightManager.instance.SetOverrideIndex(-1);
-                BetterDayNightManager.instance.currentWeatherIndex = _lastWeatherIndex;
+                var manager = BetterDayNightManager.instance;
+                manager.overrideIndex = -1;
+                manager.currentTimeIndex = _lastTimeIndex;
+                manager.currentWeatherIndex = _lastWeatherIndex;
             }
         }
-
-        /*/// <summary>
-        /// Refreshes the current time index, and returns whether or not the time is frozen.
-        /// </summary>
-        internal static bool IsTimeFrozen()
-        {
-            if (!_isTimeFrozen)
-            {
-                return false;
-            }
-
-            var manager = BetterDayNightManager.instance;
-            manager.currentTimeIndex = Current;
-            manager.currentWeatherIndex = 0;
-            return true;
-        }*/
     }
 }

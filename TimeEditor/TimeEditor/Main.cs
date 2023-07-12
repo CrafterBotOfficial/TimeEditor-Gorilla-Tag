@@ -16,7 +16,6 @@ namespace TimeEditor
             Log("Initializing...");
 
             Bepinject.Zenjector.Install<Interface.TimeEditorInstaller>().OnProject();
-            new HarmonyLib.Harmony(Info.Metadata.GUID).PatchAll(typeof(Patches));
         }
 
         #region Utilla callbacks
