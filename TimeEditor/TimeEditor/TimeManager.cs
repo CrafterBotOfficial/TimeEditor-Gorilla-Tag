@@ -8,6 +8,7 @@ namespace TimeEditor
 
         private static int _currentIndex;
         private static bool _isTimeFrozen;
+        private static bool _setLerpsMapOneShot; // This will allow the BetterDayNightManager to set the lerps map once, after that it will no longer be able to update itself
 
         /* Edit time controls */
 
@@ -29,6 +30,8 @@ namespace TimeEditor
 
             // Not going to use the SetOverrideTime method because it causes issues with saving the old data.
             manager.currentTimeIndex = index;
+            manager.currentWeatherIndex = 0;
+            _setLerpsMapOneShot = true;
         }
 
         internal static void Reset()
@@ -45,12 +48,18 @@ namespace TimeEditor
         /// </summary>
         internal static bool IsTimeFrozen()
         {
+            if (!_isTimeFrozen || _setLerpsMapOneShot)
+            {
+                _setLerpsMapOneShot = false;
+                return false;
+            }
             var manager = BetterDayNightManager.instance;
             manager.currentTimeIndex = _currentIndex;
-            return _isTimeFrozen;
+            manager.currentWeatherIndex = 0;
+            return true;
         }
 
-        internal static Dictionary<ETimePreset, int> TimePresets = new Dictionary<ETimePreset, int>()
+        internal readonly static Dictionary<ETimePreset, int> TimePresets = new Dictionary<ETimePreset, int>()
         {
             { ETimePreset.Morning, 1 },
             { ETimePreset.Noon, 4 },
