@@ -7,12 +7,12 @@ namespace TimeEditor
         [HarmonyPatch(typeof(BetterDayNightManager), "ChangeMaps"), HarmonyPrefix]
         private static bool BetterDayNightManager_ChangeMaps_Prefix()
         {
-            return !TimeManager.IsTimeFrozen();
+            return !TimeManager.IsTimeFrozen(true);
         }
         [HarmonyPatch(typeof(BetterDayNightManager), "ChangeLerps"), HarmonyPrefix]
         private static bool BetterDayNightManager_ChangeLerps_Prefix()
         {
-            return !TimeManager.IsTimeFrozen();
+            return !TimeManager.IsTimeFrozen(false);
         }
     }
 }

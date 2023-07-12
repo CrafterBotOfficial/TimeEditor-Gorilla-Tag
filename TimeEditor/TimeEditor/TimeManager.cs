@@ -8,7 +8,10 @@ namespace TimeEditor
 
         private static int _currentIndex;
         private static bool _isTimeFrozen;
-        private static bool _setLerpsMapOneShot; // This will allow the BetterDayNightManager to set the lerps map once, after that it will no longer be able to update itself
+
+        private static bool _setLerpsOneShot; // This will allow the BetterDayNightManager to set the lerps map once, after that it will no longer be able to update itself
+        private static bool _setMapsOneShot;
+        private static int _lastWeatherIndex;
 
         /* Edit time controls */
 
@@ -25,13 +28,15 @@ namespace TimeEditor
             if (!_isTimeFrozen)
             {
                 Main.Log("Saving current time data...");
+                _lastWeatherIndex = manager.currentWeatherIndex;
             }
             _isTimeFrozen = true;
 
             // Not going to use the SetOverrideTime method because it causes issues with saving the old data.
             manager.currentTimeIndex = index;
             manager.currentWeatherIndex = 0;
-            _setLerpsMapOneShot = true;
+            _setMapsOneShot = true;
+
         }
 
         internal static void Reset()
@@ -46,16 +51,26 @@ namespace TimeEditor
         /// <summary>
         /// Refreshes the current time index, and returns whether or not the time is frozen.
         /// </summary>
-        internal static bool IsTimeFrozen()
+        internal static bool IsTimeFrozen(bool forMap)
         {
-            if (!_isTimeFrozen || _setLerpsMapOneShot)
+            if (!_isTimeFrozen)
             {
-                _setLerpsMapOneShot = false;
                 return false;
             }
+            if (forMap && _setMapsOneShot)
+            {
+                _setMapsOneShot = false;
+                return false;
+            }
+            if (!forMap && _setLerpsOneShot)
+            {
+                _setLerpsOneShot = false;
+                return false;
+            }
+
             var manager = BetterDayNightManager.instance;
             manager.currentTimeIndex = _currentIndex;
-            manager.currentWeatherIndex = 0;
+            manager.currentWeatherIndex = _lastWeatherIndex;
             return true;
         }
 
