@@ -1,27 +1,27 @@
-﻿using System.Collections.Generic;
-
-namespace TimeEditor
+﻿namespace TimeEditor
 {
     internal static class TimeManager
     {
         internal static int Current;
 
-        private static int _currentIndex;
+        // private static int _currentIndex;
         private static bool _isTimeFrozen;
-
-        private static bool _setLerpsOneShot; // This will allow the BetterDayNightManager to set the lerps map once, after that it will no longer be able to update itself
-        private static bool _setMapsOneShot;
         private static int _lastWeatherIndex;
 
         /* Edit time controls */
 
         internal static void SetTime(ETimePreset timePreset)
         {
-            SetTime(TimePresets[timePreset]);
+            SetTime((int)timePreset);
         }
 
         internal static void SetTime(int index)
         {
+            if (!Main.InRoom)
+            {
+                Main.Log("You must be in a modded room to change the time.", BepInEx.Logging.LogLevel.Warning);
+                return;
+            }
             Main.Log("Changing time...");
             Current = index;
             var manager = BetterDayNightManager.instance;
@@ -32,11 +32,7 @@ namespace TimeEditor
             }
             _isTimeFrozen = true;
 
-            // Not going to use the SetOverrideTime method because it causes issues with saving the old data.
-            manager.currentTimeIndex = index;
-            manager.currentWeatherIndex = 0;
-            _setMapsOneShot = true;
-
+           BetterDayNightManager.instance.SetOverrideIndex(Current);
         }
 
         internal static void Reset()
@@ -45,41 +41,25 @@ namespace TimeEditor
             if (_isTimeFrozen)
             {
                 _isTimeFrozen = false;
+                BetterDayNightManager.instance.SetOverrideIndex(-1);
+                BetterDayNightManager.instance.currentWeatherIndex = _lastWeatherIndex;
             }
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Refreshes the current time index, and returns whether or not the time is frozen.
         /// </summary>
-        internal static bool IsTimeFrozen(bool forMap)
+        internal static bool IsTimeFrozen()
         {
             if (!_isTimeFrozen)
             {
                 return false;
             }
-            if (forMap && _setMapsOneShot)
-            {
-                _setMapsOneShot = false;
-                return false;
-            }
-            if (!forMap && _setLerpsOneShot)
-            {
-                _setLerpsOneShot = false;
-                return false;
-            }
 
             var manager = BetterDayNightManager.instance;
-            manager.currentTimeIndex = _currentIndex;
-            manager.currentWeatherIndex = _lastWeatherIndex;
+            manager.currentTimeIndex = Current;
+            manager.currentWeatherIndex = 0;
             return true;
-        }
-
-        internal readonly static Dictionary<ETimePreset, int> TimePresets = new Dictionary<ETimePreset, int>()
-        {
-            { ETimePreset.Morning, 1 },
-            { ETimePreset.Noon, 4 },
-            { ETimePreset.Evening, 6 },
-            { ETimePreset.Night, 8 }
-        };
+        }*/
     }
 }

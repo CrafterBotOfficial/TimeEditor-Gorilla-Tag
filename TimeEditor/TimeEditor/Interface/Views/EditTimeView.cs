@@ -18,7 +18,7 @@ namespace TimeEditor.Interface.Views
 
             _selectionHandler = new UISelectionHandler(EKeyboardKey.Up, EKeyboardKey.Down, EKeyboardKey.Enter);
             _selectionHandler.ConfigureSelectionIndicator("<color=#ed6540>> </color>", "", "  ", "");
-            _selectionHandler.MaxIdx = TimeManager.TimePresets.Count - 1;
+            _selectionHandler.MaxIdx = Enum.GetNames(typeof(ETimePreset)).Length;
             _selectionHandler.OnSelected += OnSelected;
 
             _arrowSelectionHandler = new UISelectionHandler(EKeyboardKey.Left, EKeyboardKey.Right);
@@ -40,14 +40,13 @@ namespace TimeEditor.Interface.Views
                 .EndAlign()
                 ;
 
-            var dictionary = TimeManager.TimePresets;
-            for (int i = 0; i < dictionary.Count; i++)
+            var dictionary = Enum.GetNames(typeof(ETimePreset));
+            foreach (var item in dictionary.Select((value, i) => new { i, value }))
             {
-                string name = Enum.GetName(typeof(ETimePreset), dictionary.ElementAt(i).Key);
-                stringBuilder.AppendLine(_selectionHandler.GetIndicatedText(i, name));
+                stringBuilder.AppendLine(_selectionHandler.GetIndicatedText(item.i, item.value));
             }
 
-            stringBuilder.AppendLine(_selectionHandler.GetIndicatedText(dictionary.Count, "Reset"));
+            stringBuilder.AppendLine(_selectionHandler.GetIndicatedText(dictionary.Length, "Reset"));
 
             SetText(stringBuilder);
         }
@@ -76,7 +75,7 @@ namespace TimeEditor.Interface.Views
 
         private void OnSelected(int obj)
         {
-            if (obj == TimeManager.TimePresets.Count)
+            if (obj == _selectionHandler.MaxIdx)
             {
                 TimeManager.Reset();
                 return;
