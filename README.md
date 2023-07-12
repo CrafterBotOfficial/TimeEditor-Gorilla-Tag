@@ -4,7 +4,7 @@
   <p align="left">Time editor is a simple plugin for the VR game Gorilla Tag that allows you to change to the time day. Note due to this plugin possibly giving a gameplay advantage, it will only function is <a href="https://github.com/legoandmars/Utilla#enabling-your-mod">MODDED LOBBIES</a>!</p>
   
   <a href="https://github.com/CrafterBotOfficial/TimeEditor-Gorilla-Tag/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-%23373737">
+    <img alt="GitHub" src="https://img.shields.io/github/license/CrafterBotOfficial/TimeEditor-Gorilla-Tag?style=flat-square">
   </a>
   <img src="https://img.shields.io/github/v/release/CrafterBotOfficial/TimeEditor-Gorilla-Tag?label=Version">
 
