@@ -1,52 +1,34 @@
 ﻿namespace TimeEditor
 {
-    internal static class TimeManager
+    internal class TimeManager
     {
-        internal static int Current;
+        internal static TimeManager Instance;
 
-        private static bool _isTimeFrozen;
-        private static int _lastTimeIndex;
-        private static int _lastWeatherIndex;
+        internal ETimePreset CurrentTime = ETimePreset.Morning; // The current time that was set
+        private int _lastTime = -1; // The time before the time was frozen
+        internal bool TimeFrozen;
 
-        /* Edit time controls */
-
-        internal static void SetTime(ETimePreset timePreset)
+        internal void SetTime(ETimePreset newTime)
         {
-            SetTime((int)timePreset);
+            if (_lastTime == -1)
+            {
+                int currentTime = BetterDayNightManager.instance.currentTimeIndex;
+                Main.Log("Saving current time as " + currentTime);
+                _lastTime = currentTime;
+            }
+            CurrentTime = newTime;
+            TimeFrozen = true;
         }
 
-        internal static void SetTime(int index)
+        internal void UnfreezeTime()
         {
-            if (!Main.InRoom)
+            if (_lastTime != -1)
             {
-                Main.Log("You must be in a modded room to change the time.", BepInEx.Logging.LogLevel.Warning);
-                return;
+                Main.Log("Unfreezing time");
+                BetterDayNightManager.instance.currentTimeIndex = _lastTime;
+                _lastTime = -1;
             }
-            Main.Log("Changing time...");
-            Current = index;
-            var manager = BetterDayNightManager.instance;
-            if (!_isTimeFrozen)
-            {
-                Main.Log("Saving current time data...");
-                _lastWeatherIndex = manager.currentWeatherIndex;
-                _lastTimeIndex = manager.currentTimeIndex;
-            }
-            _isTimeFrozen = true;
-
-            BetterDayNightManager.instance.SetOverrideIndex(Current);
-        }
-
-        internal static void Reset()
-        {
-            Main.Log("Resetting time...");
-            if (_isTimeFrozen)
-            {
-                _isTimeFrozen = false;
-                var manager = BetterDayNightManager.instance;
-                manager.overrideIndex = -1;
-                manager.currentTimeIndex = _lastTimeIndex;
-                manager.currentWeatherIndex = _lastWeatherIndex;
-            }
+            TimeFrozen = false;
         }
     }
 }

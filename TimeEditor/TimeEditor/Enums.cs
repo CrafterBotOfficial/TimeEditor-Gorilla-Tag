@@ -1,4 +1,4 @@
-﻿internal enum ETimePreset : int
+﻿internal enum ETimePreset
 {
     Morning = 1,
     Day = 4,
