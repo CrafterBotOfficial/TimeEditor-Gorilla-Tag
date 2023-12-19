@@ -18,6 +18,9 @@ public class Main : BaseUnityPlugin
     public Main()
     {
         Instance = this;
+
+        Configuration.Init(Config);
+        TimeManager.CurrentIndex = Configuration.SavedTimeIndex.Value;
     }
 
     #region Modded Room
@@ -25,6 +28,12 @@ public class Main : BaseUnityPlugin
     private void OnModdedRoomJoined()
     {
         InModdedRoom = true;
+        
+        // Automatically set the time on modded room join
+        if (Configuration.AutoSetTime.Value)
+        {
+            TimeManager.SetTime();
+        }
     }
     [ModdedGamemodeLeave]
     private void OnModdedRoomLeave()

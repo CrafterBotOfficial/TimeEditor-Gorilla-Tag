@@ -12,13 +12,13 @@ public class TimeManager
     public static void SetTime()
     {
         if (HarmonyInstance is null) HarmonyInstance = new(Main.Instance.Info.Metadata.GUID);
-        if (!Main.InModdedRoom || BetterDayNightManager.instance is null) return;
         var instance = BetterDayNightManager.instance;
 
         UnpatchSelf();
         if (CurrentIndex != -1)
         {
             instance.SetTimeOfDay(CurrentIndex);
+            Configuration.SavedTimeIndex.Value = CurrentIndex;
             HarmonyInstance.PatchAll(typeof(Patches)); // Prevents the time from changing again
         }
         else
@@ -34,7 +34,8 @@ public class TimeManager
 
     public static Dictionary<string, int> TimePresets = new()
     {
-        { "Disabled", -1 },
+        { "Disable", -1 },
+
         { "Morning", 1 },
         { "Day", 4 },
         { "Evening", 6 },
