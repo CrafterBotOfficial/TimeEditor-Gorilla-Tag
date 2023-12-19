@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+
+    <GamePath>D:\Games\Oculus\Software\another-axiom-gorilla-tag</GamePath>
+
+    <BaseOutputPath>D:\Games\Oculus\Software\another-axiom-gorilla-tag\BepInEx\plugins\TimeEditor</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(GamePath)/**" 
+               Exclude=
+               "$(GamePath)/BepInEx/core/0Harmony20.dll;
+               $(GamePath)/BepInEx/plugins/TimeEditor/Debug/net472/TimeEditor.dll;
+               $(GamePath)\BepInEx\cache\harmony_interop_cache.dat"
+               >
+      <Private>False</Private> 
+    </Reference>
+  </ItemGroup>
+</Project>
