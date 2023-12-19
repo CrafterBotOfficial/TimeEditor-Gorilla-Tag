@@ -45,6 +45,7 @@ public class ChangeTimeScreen : IScreen
                 if (Main.InModdedRoom)
                 {
                     TimeManager.CurrentIndex = TimeManager.TimePresets.ElementAt(HoveringIndex).Value;
+                    TimeManager.SetTime();
                     return;
                 }
 

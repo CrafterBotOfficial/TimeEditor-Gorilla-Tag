@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using PlayFab.MultiplayerModels;
 using Utilla;
 
 namespace TimeEditor;
@@ -10,17 +11,13 @@ namespace TimeEditor;
 [ModdedGamemode]
 public class Main : BaseUnityPlugin
 {
-    private static Main Instance;
+    public static Main Instance;
 
     public static bool InModdedRoom;
-    private readonly Harmony HarmonyInstance;
 
     public Main()
     {
         Instance = this;
-
-        HarmonyInstance = new(Info.Metadata.GUID);
-        HarmonyInstance.PatchAll(typeof(Patches));
     }
 
     #region Modded Room
@@ -33,6 +30,9 @@ public class Main : BaseUnityPlugin
     private void OnModdedRoomLeave()
     {
         InModdedRoom = false;
+
+        TimeManager.CurrentIndex = -1;
+        TimeManager.SetTime();
     }
     #endregion
 
