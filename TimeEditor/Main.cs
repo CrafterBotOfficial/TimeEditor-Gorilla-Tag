@@ -1,13 +1,11 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
-using HarmonyLib;
-using PlayFab.MultiplayerModels;
 using Utilla;
 
 namespace TimeEditor;
 
 [BepInPlugin("crafterbot.timeeditor", "Time Editor", "2.0.0"), BepInDependency("org.legoandmars.gorillatag.utilla"), BepInDependency("com.kylethescientist.gorillatag.computerplusplus")]
-[BepInProcess("Gorilla Tag.exe")]
+// [BepInProcess("Gorilla Tag.exe")]
 [ModdedGamemode]
 public class Main : BaseUnityPlugin
 {
@@ -28,7 +26,7 @@ public class Main : BaseUnityPlugin
     private void OnModdedRoomJoined()
     {
         InModdedRoom = true;
-        
+
         // Automatically set the time on modded room join
         if (Configuration.AutoSetTime.Value)
         {
